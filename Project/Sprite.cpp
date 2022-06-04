@@ -55,6 +55,18 @@ void Engine::Sprite::Update(float deltaTime)
 		frameDuration = 0;
 		frameIndex = frameDuration == numFrames - 1 ? 0 : frameIndex + 1;
 	}
+
+	
+}
+
+bool Engine::Sprite::isPlaying() {
+
+	if (frameIndex <= numFrames) {
+		return true;
+	}
+	else {
+		return false;
+	}
 }
 
 void Engine::Sprite::SetFlipHorizontal(bool flipHorizontal)
@@ -78,6 +90,17 @@ void Engine::Sprite::SetEnableAnimation(bool enableAnimation)
 	this->enableAnimation = enableAnimation;
 }
 
+void Engine::Sprite::setTexture(Texture* texture, int num_frame)
+{
+	this->texture = texture;
+	this->numFrames = num_frame;
+}
+
+Texture* Engine::Sprite::getTexture()
+{
+	return this->texture;
+}
+
 void Sprite::SetPosition(float x, float y)
 {
 	this->x = x;
@@ -92,6 +115,16 @@ void Sprite::SetRotation(float degree)
 void Engine::Sprite::SetNumFrames(int numFrames)
 {
 	this->numFrames = numFrames;
+}
+
+void Engine::Sprite::SetFrameIndex(int numFrames)
+{
+	this->frameIndex = numFrames;
+}
+
+int Engine::Sprite::GetFrameIndex()
+{
+	return this->frameIndex;
 }
 
 float Sprite::GetRotation()

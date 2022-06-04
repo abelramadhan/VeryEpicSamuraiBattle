@@ -15,13 +15,18 @@ namespace Engine {
 		~Sprite();
 		void Draw();
 		void Update(float deltaTime);
+		bool isPlaying();
 		void SetFlipHorizontal(bool flipHorizontal);
 		void SetFlipVertical(bool flipVertical);
 		void SetAnimationDuration(int maxFrameDuration);
+		void setTexture(Texture* texture, int num_frame);
+		Texture* getTexture();
 		void SetEnableAnimation(bool enableAnimation);
 		void SetPosition(float x, float y);
 		void SetRotation(float degree);
 		void SetNumFrames(int numFrames);
+		void SetFrameIndex(int frameIndex);
+		int GetFrameIndex();
 		float GetRotation();
 		void SetScale(float s);
 		float GetScale();

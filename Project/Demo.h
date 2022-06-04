@@ -8,6 +8,7 @@
 #include "Music.h"
 #include "Sound.h"
 #include "Text.h"
+#include "player.h"
 
 namespace Engine {
 	class Demo :
@@ -17,6 +18,7 @@ namespace Engine {
 		Demo(Setting* setting);
 		~Demo();
 		virtual void Init();
+		virtual void Load();
 		virtual void Update();
 		virtual void Render();
 	private:
@@ -28,6 +30,29 @@ namespace Engine {
 
 		Texture* promptTexture;
 		Sprite* promptSprite;
+
+		Player* mack;
+		Texture* mackTextureIdle;
+		Texture* mackTextureRun;
+		Texture* mackTextureAttack;
+		Texture* mackTextureHit;
+		Texture* mackTextureDead;
+
+		Player* ken;
+		Texture* kenTextureIdle;
+		Texture* kenTextureRun;
+		Texture* kenTextureAttack;
+		Texture* kenTextureHit;
+		Texture* kenTextureDead;
+
+		int game_state;
+
+		Music* music = NULL;
+
+		
+
+		/*Texture* promptTexture;
+		Sprite* promptSprite;
 		Texture* crateTexture = NULL;
 		Texture* bartTexture = NULL;
 		Sprite* crateSprite = NULL;
@@ -35,7 +60,7 @@ namespace Engine {
 		Sprite* bartSprite = NULL;
 		Music* music = NULL;;
 		Sound* sound = NULL;
-		Text* text = NULL;
+		Text* text = NULL;*/
 		int count;
 	};
 }

@@ -142,19 +142,34 @@
     <Image Include="..\..\..\TemplateProject\vs\Project\title.png" />
     <Image Include="crate.png" />
     <Image Include="homeranim.png" />
+    <Image Include="ken-attack.png" />
+    <Image Include="ken-dead.png" />
+    <Image Include="ken-hit.png" />
+    <Image Include="ken-idle.png" />
+    <Image Include="ken-run.png" />
+    <Image Include="mack-attack1.png" />
+    <Image Include="mack-dead.png" />
+    <Image Include="mack-hit.png" />
+    <Image Include="mack-idle.png" />
+    <Image Include="mack-run.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="bensound-funkyelement.ogg" />
+    <None Include="bg_music.ogg" />
+    <None Include="end.ogg" />
     <None Include="sprite.frag" />
     <None Include="sprite.vert" />
+    <None Include="start.ogg" />
     <None Include="text.frag" />
     <None Include="text.vert" />
+    <None Include="theme.ogg" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
     <ClInclude Include="Demo.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="Music.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="Quad.h" />
     <ClInclude Include="BoundingBox.h" />
     <ClInclude Include="Setting.h" />
@@ -169,6 +184,7 @@
     <ClCompile Include="Demo.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="Music.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="Quad.cpp" />
     <ClCompile Include="BoundingBox.cpp" />
     <ClCompile Include="Setting.cpp" />

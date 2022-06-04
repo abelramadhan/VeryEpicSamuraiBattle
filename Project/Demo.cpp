@@ -10,18 +10,19 @@ Demo::Demo(Setting* setting) :Game(setting)
 
 Demo::~Demo()
 {
-	delete crateTexture;
-	delete bartTexture;
-	delete crateSprite;
-	delete crateSprite2;
-	delete bartSprite;
+	delete bgTexture;
+	delete bgSprite;
+	delete titleTexture;
+	delete titleSprite;
+	delete promptTexture;
+	delete promptSprite;
 	delete music;
-	delete text;
 }
 
 void Demo::Init()
 {
 	count = 0;
+	game_state = 0;
 
 	bgTexture = new Texture("bg.png");
 	titleTexture = new Texture("title.png");
@@ -36,45 +37,128 @@ void Demo::Init()
 	promptSprite->SetPosition(setting->screenWidth / 2 - promptSprite->GetScaleWidth() / 2, 160.0f);
 
 	inputManager->AddInputMapping("Start", SDLK_RETURN);
+	inputManager->AddInputMapping("Exit", SDLK_ESCAPE);
+	inputManager->AddInputMapping("Mack-Right", SDLK_d);
+	inputManager->AddInputMapping("Mack-Left", SDLK_a);
+	inputManager->AddInputMapping("Mack-Attack", SDLK_s);
+	inputManager->AddInputMapping("Ken-Right", SDLK_d);
+	inputManager->AddInputMapping("Ken-Left", SDLK_a);
+	inputManager->AddInputMapping("Ken-Attack", SDLK_s);
+	inputManager->AddInputMapping("hit-test", SDLK_k);
 
-	music = new Music("bensound-funkyelement.ogg");
+	music = new Music("theme.ogg");
 	music->SetVolume(40);
 	music->Play(true);
+}
+
+void Demo::Load()
+{	
+	mackTextureIdle = new Texture("mack-idle.png");
+	mackTextureRun = new Texture("mack-run.png");
+	mackTextureAttack = new Texture("mack-attack1.png");
+	mackTextureHit = new Texture("mack-hit.png");
+	mackTextureDead = new Texture("mack-dead.png");
+	Sprite* mack_idle = new Sprite(mackTextureIdle, defaultSpriteShader, defaultQuad);
+	mack_idle->SetNumFrames(8);
+	mack_idle->SetScale(4.2f);
+	Sprite* mack_run = new Sprite(mackTextureRun, defaultSpriteShader, defaultQuad);
+	mack_run->SetNumFrames(8);
+	Sprite* mack_attack = new Sprite(mackTextureAttack, defaultSpriteShader, defaultQuad);
+	mack_attack->SetNumFrames(6);
+	Sprite* mack_hit = new Sprite(mackTextureHit, defaultSpriteShader, defaultQuad);
+	mack_hit->SetNumFrames(4);
+	Sprite* mack_dead = new Sprite(mackTextureDead, defaultSpriteShader, defaultQuad);
+	mack_dead->SetNumFrames(6);
+	mack = new Player(mack_idle);
+	mack->setSprite(mack_idle, mack_run, mack_attack, mack_hit, mack_dead);
+
+	/*kenTextureIdle = new Texture("ken-idle.png");
+	kenTextureRun = new Texture("ken-run.png");
+	kenTextureAttack = new Texture("ken-attack.png");
+	kenTextureHit = new Texture("ken-hit.png");
+	kenTextureDead = new Texture("ken-dead.png");
+	Sprite* ken_idle = new Sprite(kenTextureIdle, defaultSpriteShader, defaultQuad);
+	ken_idle->SetNumFrames(4);
+	ken_idle->SetScale(4.2f);
+	Sprite* ken_run = new Sprite(kenTextureRun, defaultSpriteShader, defaultQuad);
+	ken_run->SetNumFrames(8);
+	Sprite* ken_attack = new Sprite(kenTextureHit, defaultSpriteShader, defaultQuad);
+	ken_attack->SetNumFrames(6);
+	Sprite* ken_hit = new Sprite(kenTextureHit, defaultSpriteShader, defaultQuad);
+	ken_hit->SetNumFrames(4);
+	Sprite* ken_dead = new Sprite(kenTextureDead, defaultSpriteShader, defaultQuad);
+	ken_dead->SetNumFrames(6);
+	ken = new Player(ken_idle);
+	ken->setSprite(ken_idle, ken_run, ken_attack, ken_hit, ken_dead);*/
+
+	music = new Music("bg_music.ogg");
+	music->SetVolume(40);
+	music->Play(true);
+
 }
 
 void Demo::Update()
 {
 	if (inputManager->IsKeyReleased("Start")) {
-		state = State::EXIT;
+		if (game_state != 1) {
+			game_state = 1;
+			Load();
+		}
 		return;
 	}
 
-	if (count == 240) {
-		count = 0;
+	if (inputManager->IsKeyReleased("Exit")) {
+		if (game_state != 0) {
+			game_state = 0;
+			music = new Music("theme.ogg");
+			music->Play(true);
+		}
+		else {
+			state = State::EXIT;
+		}
+		return;
 	}
-	else {
-		count++;
+
+	if (game_state == 0) {
+		if (count == 240) {
+			count = 0;
+		}
+		else {
+			count++;
+		}
 	}
 
-
-
-	/*bartSprite->Update(GetGameTime());
-	bartSprite->SetEnableAnimation(xspeed == 0 ? false : true);
-	bartSprite->SetPosition(bartSprite->GetX() + xspeed * GetGameTime(),
-	bartSprite->GetY() + yspeed * GetGameTime());*/
-
-
+	if (game_state == 1) {
+		float gametime = GetGameTime();
+		mack->setGameTime(gametime);
+		//ken->setGameTime(gametime);
+		mack->update(inputManager);
+		//ken->update(inputManager);
+		if (inputManager->IsKeyReleased("hit-test")) {
+			mack->takeHit();
+		}
+	}
+	
 }
 
 void Demo::Render()
 {
 	bgSprite->Draw();
-	titleSprite->Draw();
-	if (count >= 120 && count <= 200) {
+	switch (game_state) {
+		case 0:
+			titleSprite->Draw();
+			if (count >= 120 && count <= 200) {
+			}
+			else {
+				promptSprite->Draw();
+			}
+			break;
+		case 1:
+			mack->draw();
+			//ken->draw();
+			break;
 	}
-	else {
-		promptSprite->Draw();
-	}
+
 }
 
 

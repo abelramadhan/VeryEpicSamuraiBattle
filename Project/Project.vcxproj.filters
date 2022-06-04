@@ -16,6 +16,15 @@
     <Filter Include="Resource Files\menu">
       <UniqueIdentifier>{c30adb6d-6c08-4a90-bcb3-44db1482aec6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\music">
+      <UniqueIdentifier>{ff439c02-f7a5-4e02-9b91-f400acb85359}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\mack">
+      <UniqueIdentifier>{e059a7bd-b297-4097-b2af-479bb6e6078b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\ken">
+      <UniqueIdentifier>{616cfea9-4225-4306-8872-cda6cc9f3eeb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Image Include="homeranim.png">
@@ -33,6 +42,36 @@
     <Image Include="..\..\..\TemplateProject\vs\Project\title.png">
       <Filter>Resource Files\menu</Filter>
     </Image>
+    <Image Include="mack-attack1.png">
+      <Filter>Resource Files\mack</Filter>
+    </Image>
+    <Image Include="mack-dead.png">
+      <Filter>Resource Files\mack</Filter>
+    </Image>
+    <Image Include="mack-hit.png">
+      <Filter>Resource Files\mack</Filter>
+    </Image>
+    <Image Include="mack-run.png">
+      <Filter>Resource Files\mack</Filter>
+    </Image>
+    <Image Include="ken-attack.png">
+      <Filter>Resource Files\ken</Filter>
+    </Image>
+    <Image Include="ken-dead.png">
+      <Filter>Resource Files\ken</Filter>
+    </Image>
+    <Image Include="ken-hit.png">
+      <Filter>Resource Files\ken</Filter>
+    </Image>
+    <Image Include="ken-run.png">
+      <Filter>Resource Files\ken</Filter>
+    </Image>
+    <Image Include="mack-idle.png">
+      <Filter>Resource Files\mack</Filter>
+    </Image>
+    <Image Include="ken-idle.png">
+      <Filter>Resource Files\ken</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <None Include="sprite.frag">
@@ -49,6 +88,18 @@
     </None>
     <None Include="text.vert">
       <Filter>Resource Files</Filter>
+    </None>
+    <None Include="end.ogg">
+      <Filter>Resource Files\music</Filter>
+    </None>
+    <None Include="bg_music.ogg">
+      <Filter>Resource Files\music</Filter>
+    </None>
+    <None Include="theme.ogg">
+      <Filter>Resource Files\music</Filter>
+    </None>
+    <None Include="start.ogg">
+      <Filter>Resource Files\music</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -88,6 +139,9 @@
     <ClInclude Include="Text.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Demo.cpp">
@@ -124,6 +178,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Text.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
