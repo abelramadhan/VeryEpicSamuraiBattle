@@ -48,9 +48,6 @@
     <Image Include="mack-dead.png">
       <Filter>Resource Files\mack</Filter>
     </Image>
-    <Image Include="mack-hit.png">
-      <Filter>Resource Files\mack</Filter>
-    </Image>
     <Image Include="mack-run.png">
       <Filter>Resource Files\mack</Filter>
     </Image>
@@ -71,6 +68,9 @@
     </Image>
     <Image Include="ken-idle.png">
       <Filter>Resource Files\ken</Filter>
+    </Image>
+    <Image Include="mack-hit.png">
+      <Filter>Resource Files\mack</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>

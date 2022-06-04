@@ -25,6 +25,7 @@ namespace Engine {
 		void SetPosition(float x, float y);
 		void SetRotation(float degree);
 		void SetNumFrames(int numFrames);
+		int GetNumFrames();
 		void SetFrameIndex(int frameIndex);
 		int GetFrameIndex();
 		float GetRotation();

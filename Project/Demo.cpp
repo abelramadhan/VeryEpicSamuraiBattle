@@ -41,10 +41,10 @@ void Demo::Init()
 	inputManager->AddInputMapping("Mack-Right", SDLK_d);
 	inputManager->AddInputMapping("Mack-Left", SDLK_a);
 	inputManager->AddInputMapping("Mack-Attack", SDLK_s);
-	inputManager->AddInputMapping("Ken-Right", SDLK_d);
-	inputManager->AddInputMapping("Ken-Left", SDLK_a);
-	inputManager->AddInputMapping("Ken-Attack", SDLK_s);
-	inputManager->AddInputMapping("hit-test", SDLK_k);
+	inputManager->AddInputMapping("Ken-Right", SDLK_l);
+	inputManager->AddInputMapping("Ken-Left", SDLK_j);
+	inputManager->AddInputMapping("Ken-Attack", SDLK_k);
+	inputManager->AddInputMapping("hit-test", SDLK_y);
 
 	music = new Music("theme.ogg");
 	music->SetVolume(40);
@@ -72,24 +72,23 @@ void Demo::Load()
 	mack = new Player(mack_idle);
 	mack->setSprite(mack_idle, mack_run, mack_attack, mack_hit, mack_dead);
 
-	/*kenTextureIdle = new Texture("ken-idle.png");
+	kenTextureIdle = new Texture("ken-idle.png");
 	kenTextureRun = new Texture("ken-run.png");
 	kenTextureAttack = new Texture("ken-attack.png");
 	kenTextureHit = new Texture("ken-hit.png");
 	kenTextureDead = new Texture("ken-dead.png");
 	Sprite* ken_idle = new Sprite(kenTextureIdle, defaultSpriteShader, defaultQuad);
 	ken_idle->SetNumFrames(4);
-	ken_idle->SetScale(4.2f);
 	Sprite* ken_run = new Sprite(kenTextureRun, defaultSpriteShader, defaultQuad);
 	ken_run->SetNumFrames(8);
-	Sprite* ken_attack = new Sprite(kenTextureHit, defaultSpriteShader, defaultQuad);
-	ken_attack->SetNumFrames(6);
+	Sprite* ken_attack = new Sprite(kenTextureAttack, defaultSpriteShader, defaultQuad);
+	ken_attack->SetNumFrames(4);
 	Sprite* ken_hit = new Sprite(kenTextureHit, defaultSpriteShader, defaultQuad);
-	ken_hit->SetNumFrames(4);
+	ken_hit->SetNumFrames(3);
 	Sprite* ken_dead = new Sprite(kenTextureDead, defaultSpriteShader, defaultQuad);
-	ken_dead->SetNumFrames(6);
+	ken_dead->SetNumFrames(7);
 	ken = new Player(ken_idle);
-	ken->setSprite(ken_idle, ken_run, ken_attack, ken_hit, ken_dead);*/
+	ken->setSprite(ken_idle, ken_run, ken_attack, ken_hit, ken_dead);
 
 	music = new Music("bg_music.ogg");
 	music->SetVolume(40);
@@ -131,11 +130,12 @@ void Demo::Update()
 	if (game_state == 1) {
 		float gametime = GetGameTime();
 		mack->setGameTime(gametime);
-		//ken->setGameTime(gametime);
-		mack->update(inputManager);
-		//ken->update(inputManager);
+		ken->setGameTime(gametime);
+		mack->update(inputManager, "Mack");
+		ken->update(inputManager, "Ken");
 		if (inputManager->IsKeyReleased("hit-test")) {
 			mack->takeHit();
+			ken->takeHit();
 		}
 	}
 	
@@ -155,7 +155,7 @@ void Demo::Render()
 			break;
 		case 1:
 			mack->draw();
-			//ken->draw();
+			ken->draw();
 			break;
 	}
 

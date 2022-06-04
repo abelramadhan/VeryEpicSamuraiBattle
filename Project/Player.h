@@ -21,7 +21,7 @@ namespace Engine {
 		void takeHit();
 		void switchAnim(Sprite* sprite);
 		void setGameTime(float gametime);
-		void update(Input* inputManager);
+		void update(Input* inputManager, string player);
 		void draw();
 	private:
 		int health;

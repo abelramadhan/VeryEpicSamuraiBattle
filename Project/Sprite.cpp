@@ -117,6 +117,11 @@ void Engine::Sprite::SetNumFrames(int numFrames)
 	this->numFrames = numFrames;
 }
 
+int Engine::Sprite::GetNumFrames()
+{
+	return this->numFrames;
+}
+
 void Engine::Sprite::SetFrameIndex(int numFrames)
 {
 	this->frameIndex = numFrames;

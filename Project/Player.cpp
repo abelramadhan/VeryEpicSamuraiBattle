@@ -58,7 +58,7 @@ void Engine::Player::takeHit() {
 	}
 }
 
-void Engine::Player::update(Input* inputManager) {
+void Engine::Player::update(Input* inputManager, string player) {
 
 
 	float xspeed = 0;
@@ -76,32 +76,32 @@ void Engine::Player::update(Input* inputManager) {
 
 	if (this->isDead) {
 		this->switchAnim(hit);
-		if (this->current->GetFrameIndex() >= 4) {
+		if (this->current->GetFrameIndex() >= this->hit->GetNumFrames()) {
 			this->switchAnim(dead);
-			if (this->current->GetFrameIndex() >= 6) {
-				this->current->SetFrameIndex(5);
+			if (this->current->GetFrameIndex() >= this->dead->GetNumFrames()) {
+				this->current->SetFrameIndex(this->dead->GetNumFrames());
 			}
 		}
 		return;
 	}
 
-	if (inputManager->IsKeyPressed("Mack-Right")) {
+	if (inputManager->IsKeyPressed(player+"-Right")) {
 		this->switchAnim(run);
 		xspeed = 0.4f;
 	}
 
-	if (inputManager->IsKeyPressed("Mack-Left")) {
+	if (inputManager->IsKeyPressed(player + "-Left")) {
 		this->switchAnim(run);
 		xspeed = -0.4f;
 	}
 
 	if (this->isHit) {
 		this->switchAnim(hit);
-		if (this->current->GetFrameIndex() >= 4 && this->current->isPlaying()) {
+		if (this->current->GetFrameIndex() >= this->current->GetNumFrames() && this->current->isPlaying()) {
 			this->isHit = false;
 			this->current->SetFrameIndex(0);
 		}
-	} else if (inputManager->IsKeyReleased("Mack-Attack")) {
+	} else if (inputManager->IsKeyReleased(player + "-Attack")) {
 		this->switchAnim(attack);
 		if (!current->isPlaying()) {
 			current->SetFrameIndex(0);
