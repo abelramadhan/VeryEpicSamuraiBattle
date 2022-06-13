@@ -45,11 +45,28 @@ namespace Engine {
 		Texture* kenTextureHit;
 		Texture* kenTextureDead;
 
+		Texture* healthbarTexture;
+		Texture* healthTexture;
+		Sprite* healthbar;
+		Sprite* health1;
+		Sprite* health2;
+
+		Texture* mackWinTexture;
+		Texture* kenWinTexture;
+		Sprite* mackWin;
+		Sprite* kenWin;
+
+		Texture* mackControlTexture;
+		Texture* kenControlTexture;
+		Sprite* mackControl;
+		Sprite* kenControl;
+
 		int game_state;
+		int count;
 
 		Music* music = NULL;
-
-		
+		Sound* startSound = NULL;
+		Sound* endSound = NULL;
 
 		/*Texture* promptTexture;
 		Sprite* promptSprite;
@@ -61,7 +78,6 @@ namespace Engine {
 		Music* music = NULL;;
 		Sound* sound = NULL;
 		Text* text = NULL;*/
-		int count;
 	};
 }
 #endif

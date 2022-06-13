@@ -54,9 +54,7 @@ void Engine::Sprite::Update(float deltaTime)
 	if (frameDuration >= maxFrameDuration) {
 		frameDuration = 0;
 		frameIndex = frameDuration == numFrames - 1 ? 0 : frameIndex + 1;
-	}
-
-	
+	}	
 }
 
 bool Engine::Sprite::isPlaying() {

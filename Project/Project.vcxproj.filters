@@ -25,6 +25,9 @@
     <Filter Include="Resource Files\ken">
       <UniqueIdentifier>{616cfea9-4225-4306-8872-cda6cc9f3eeb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\healthbar">
+      <UniqueIdentifier>{9a4903dc-22d5-4cc5-91b0-6191d84dca48}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Image Include="homeranim.png">
@@ -71,6 +74,24 @@
     </Image>
     <Image Include="mack-hit.png">
       <Filter>Resource Files\mack</Filter>
+    </Image>
+    <Image Include="health.png">
+      <Filter>Resource Files\healthbar</Filter>
+    </Image>
+    <Image Include="healthbar.png">
+      <Filter>Resource Files\healthbar</Filter>
+    </Image>
+    <Image Include="ken-win.png">
+      <Filter>Resource Files\menu</Filter>
+    </Image>
+    <Image Include="mack-win.png">
+      <Filter>Resource Files\menu</Filter>
+    </Image>
+    <Image Include="ken-control.png">
+      <Filter>Resource Files\menu</Filter>
+    </Image>
+    <Image Include="mack-control.png">
+      <Filter>Resource Files\menu</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>
@@ -191,6 +212,9 @@
   </ItemGroup>
   <ItemGroup>
     <Font Include="hongkonghustle.ttf">
+      <Filter>Resource Files</Filter>
+    </Font>
+    <Font Include="upheavel.ttf">
       <Filter>Resource Files</Filter>
     </Font>
   </ItemGroup>

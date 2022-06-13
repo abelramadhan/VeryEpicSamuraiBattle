@@ -141,17 +141,23 @@
     <Image Include="..\..\..\TemplateProject\vs\Project\prompt.png" />
     <Image Include="..\..\..\TemplateProject\vs\Project\title.png" />
     <Image Include="crate.png" />
+    <Image Include="health.png" />
+    <Image Include="healthbar.png" />
     <Image Include="homeranim.png" />
     <Image Include="ken-attack.png" />
+    <Image Include="ken-control.png" />
     <Image Include="ken-dead.png" />
     <Image Include="ken-hit.png" />
     <Image Include="ken-idle.png" />
     <Image Include="ken-run.png" />
+    <Image Include="ken-win.png" />
     <Image Include="mack-attack1.png" />
+    <Image Include="mack-control.png" />
     <Image Include="mack-dead.png" />
     <Image Include="mack-hit.png" />
     <Image Include="mack-idle.png" />
     <Image Include="mack-run.png" />
+    <Image Include="mack-win.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="bensound-funkyelement.ogg" />
@@ -199,6 +205,7 @@
   </ItemGroup>
   <ItemGroup>
     <Font Include="hongkonghustle.ttf" />
+    <Font Include="upheavel.ttf" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

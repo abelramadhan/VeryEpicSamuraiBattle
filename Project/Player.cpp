@@ -2,22 +2,22 @@
 
 using namespace Engine;
 
-Player::Player(Sprite* idle) {
+Player::Player(Sprite* idle, float x, float y, int animDur) {
 	this->health = 100;
 	this->attackDmg = 20;
 	this->isDead = false;
 	this->isHit = false;
-	this->x = 0;
-	this->y = -190.0f;
+	this->x = x;
+	this->y = y;
 	this->current = idle;
 	this->hitbox = new BoundingBox();
-	this->hitbox->SetMinY(this->y + (-330.0f));
-	this->hitbox->SetMaxY(this->y + 100.0f);
+	this->hitbox->SetMinY(this->y + (-190.0f));
+	this->hitbox->SetMaxY(this->y + 200.0f);
 	this->attackHitbox = new BoundingBox();
-	this->attackHitbox->SetMinY(this->y + (-330.0f));
-	this->attackHitbox->SetMaxY(this->y + 100.0f);
-	this->current->SetAnimationDuration(60);
-
+	this->attackHitbox->SetMinY(this->y + (-190.0f));
+	this->attackHitbox->SetMaxY(this->y + 200.0f);
+	this->current->SetAnimationDuration(animDur);
+	this->flipHitbox = false;
 }
 
 Player::~Player() {
@@ -51,24 +51,70 @@ void Engine::Player::setGameTime(float gametime) {
 }
 
 void Engine::Player::takeHit() {
-	this->isHit = true;
-	this->health = health - 20;
-	if (health <= 0) {
-		isDead = true;
+	if (this->current != hit && this->current != attack) {
+		this->isHit = true;
+		if (health > 0) {
+			this->health = health - 20;
+		}
+		if (health <= 0) {
+			isDead = true;
+		}
 	}
 }
 
-void Engine::Player::update(Input* inputManager, string player) {
+void Engine::Player::setFlipHitbox(bool isFlip) {
+	this->flipHitbox = isFlip;
+}
+
+bool Engine::Player::getDead() {
+	return this->isDead;
+}
+
+int Engine::Player::getHealth() {
+	return this->health;
+}
+
+float Engine::Player::getX() {
+	return this->x;
+}
+
+void Engine::Player::flip(bool isFlip) {
+	this->current->SetFlipHorizontal(isFlip);
+}
+
+void Engine::Player::update(Input* inputManager, string player, Player* enemy) {
 
 
 	float xspeed = 0;
-	this->hitbox->SetMinX(this->x + 30.0f);
-	this->hitbox->SetMaxX(this->x + 60.0f);
-	this->hitbox->SetMinX(this->x + 30.0f);
-	this->hitbox->SetMaxX(this->x + 60.0f);
-	
 
+	this->hitbox->SetMinX(this->x + 50.0f);
+	this->hitbox->SetMaxX(this->x + 100.0f);
+
+	if (!flipHitbox) {
+		this->attackHitbox->SetMinX(this->x + 100.0f);
+		if (player == "mack") {
+			this->attackHitbox->SetMaxX(this->x + 450.0f);
+		}
+		else {
+			this->attackHitbox->SetMaxX(this->x + 420.0f);
+		}
+	}
+	else {
+		this->attackHitbox->SetMaxX(this->x - 30.0f);
+		if (player == "mack") {
+			this->attackHitbox->SetMinX(this->x - 380.0f);
+		}
+		else {
+			this->attackHitbox->SetMinX(this->x - 350.0f);
+		}
+	}
+	
 	if (this->current == this->attack && this->current->isPlaying()) {
+		if (this->current->GetFrameIndex() == this->current->GetNumFrames() - 1) {
+			if (this->attackHitbox->CollideWith(enemy->hitbox)) {
+				enemy->takeHit();
+			}
+		}	
 		return;
 	}
 
@@ -79,7 +125,7 @@ void Engine::Player::update(Input* inputManager, string player) {
 		if (this->current->GetFrameIndex() >= this->hit->GetNumFrames()) {
 			this->switchAnim(dead);
 			if (this->current->GetFrameIndex() >= this->dead->GetNumFrames()) {
-				this->current->SetFrameIndex(this->dead->GetNumFrames());
+				this->current->SetFrameIndex(this->current->GetNumFrames()-1);
 			}
 		}
 		return;
@@ -110,4 +156,5 @@ void Engine::Player::update(Input* inputManager, string player) {
 
 	this->x = this->x + xspeed * gametime;
 	this->current->SetPosition(x, this->y);
+
 }

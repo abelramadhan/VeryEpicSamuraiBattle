@@ -9,9 +9,9 @@ Setting::Setting()
 	this->screenHeight = 1080;
 	this->vsync = false;
 	this->timeScale = 1;
-	this->windowFlag = WindowFlag::WINDOWED;
+	this->windowFlag = WindowFlag::BORDERLESS;
 	this->targetFrameRate = 0;
-	this->windowTitle = "Untitled";
+	this->windowTitle = "Very Epic Samurai Battle";
 }
 
 Setting::~Setting()

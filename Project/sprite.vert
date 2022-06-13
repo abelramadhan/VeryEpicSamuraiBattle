@@ -18,7 +18,7 @@ void main()
 {
     gl_Position = projection * model * vec4(position, 1.0f);
     ourColor = color;
-    float x = ( (1.0f/n) * (texCoord.x + frameIndex));
+    float x = flipHorizontal == 0? ( (1.0f/n) * (texCoord.x + frameIndex)) : ( (1.0f/n) * (texCoord.x - frameIndex-1));
     TexCoord = vec2(flipHorizontal == 1? 1.0f - x : x, flipVertical == 1 ? texCoord.y : 1.0f - texCoord.y);
 }
 
